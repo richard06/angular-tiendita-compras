@@ -13,7 +13,7 @@ export class ProductDetailsComponent implements OnInit {
 
   product;
 
-  constructor(
+  constructor(//inyeccion del servicio del carrito de ventas
     private route: ActivatedRoute,
     private cartService: CartService
   ) { }
@@ -21,8 +21,12 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit() {
 
     this.route.paramMap.subscribe(params => {
-      this.product = products[+params.get('productId')];
+    this.product = products[+params.get('productId')];
     });
   }
 
+  addToCart(product){
+    window.alert('Su producto se agrego al carrito de compras');
+    this.cartService.addToCart(product);
+  }
 }
