@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from'@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
       items =[];
+    
+  constructor(
+    private http: HttpClient  //injeccion de HttpClient
+  ) {
 
+  }
 //Agregar producto a carrito
       addToCart(product){
         this.items.push(product);
@@ -20,8 +26,8 @@ export class CartService {
         return this.items;
       }
 
-  constructor() {
-
-  }
-
+      //metodo para recupear los datos de envio de precios( tipos y precios)
+      getShippingPrices(){
+        return this.http.get('./assets/shipping.json');
+      }
 }
